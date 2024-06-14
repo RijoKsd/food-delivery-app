@@ -14,3 +14,10 @@ a{
     text-decoration: none;
     color:inherit;
 }
+
+/* explore menu page css */
+.explore-menu-list::-webkit-scrollbar{
+    /* width: 0; */
+    display: none;
+     
+}
