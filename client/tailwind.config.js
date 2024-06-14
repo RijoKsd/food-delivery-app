@@ -7,6 +7,7 @@ export default {
         link: "#49557e",
         tomato: "#FF6347",
         lightGray: "#747474",
+        darkGray: "#676767"
       },
       keyframes: {
         fadeIn: {
