@@ -6,7 +6,17 @@ export default {
       colors: {
         link: "#49557e",
         tomato: "#FF6347",
+        lightGray: "#747474",
       },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+      },
+      animation: {
+        fadeIn: "fadeIn 2s ease-in-out",
+      }
     },
   },
   plugins: [],
