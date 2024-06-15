@@ -10,7 +10,6 @@ const FoodDisplay = ({ category }) => {
       <div className="food-display-list grid mt-4 p-8 gap-5 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {food_list.map((item, index) => {
           if (category === "all" || category === item.category) {
-            console.log(item, "item");
             return <FoodItem key={index} {...item} />;
           }
         })}

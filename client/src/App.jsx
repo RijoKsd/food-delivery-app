@@ -3,16 +3,20 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Cart from "./pages/Cart/Cart";
 import PlaceOrder from "./pages/PlaceOrder/PlaceOrder";
+import Footer from "./components/Footer/Footer";
 
 export default function App() {
   return (
-    <div className="w-4/5 m-auto">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/order" element={<PlaceOrder />} />
-      </Routes>
-    </div>
+    <>
+      <div className="w-4/5 m-auto">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/order" element={<PlaceOrder />} />
+        </Routes>
+      </div>
+      <Footer />
+    </>
   );
 }
