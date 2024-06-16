@@ -10,19 +10,30 @@ const Footer = () => {
         <div className="left col-span-2    flex flex-col items-start gap22">
           <img src={assets.logo} alt="logo" />
           <p className="mt-3">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
-            scelerisque, nunc ac egestas tempus, nisl purus pretium quam, a
-            efficitur odio mi eu purus.
-            <div className="social-icons flex justify-start items-center gap-5 mt-3">
-              <img src={assets.facebook_icon} alt="facebook icon"  className="w-8"/>
-              <img src={assets.twitter_icon} alt="twitter icon" className="w-8" />
-              <img src={assets.linkedin_icon} alt="linkedin icon" className="w-8" />
-            </div>
+            Delicious meals delivered straight to your door. Experience the
+            taste of convenience with our wide range of cuisines and easy online
+            ordering. Satisfaction guaranteed with every bite!
           </p>
+
+          <div className="social-icons flex justify-start items-center gap-5 mt-3">
+            <img
+              src={assets.facebook_icon}
+              alt="facebook icon"
+              className="w-8"
+            />
+            <img src={assets.twitter_icon} alt="twitter icon" className="w-8" />
+            <img
+              src={assets.linkedin_icon}
+              alt="linkedin icon"
+              className="w-8"
+            />
+          </div>
         </div>
         <div className="center flex flex-col items-start gap:2">
-          <h2 className="font-semibold text-xl border-b mb-2 text-white uppercase">Company</h2>
-          <ul >
+          <h2 className="font-semibold text-xl border-b mb-2 text-white uppercase">
+            Company
+          </h2>
+          <ul>
             <li className="cursor-pointer">Home</li>
             <li className="cursor-pointer">About us</li>
             <li className="cursor-pointer">Delivery </li>
@@ -30,14 +41,16 @@ const Footer = () => {
           </ul>
         </div>
         <div className="right flex flex-col items-start gap-2 ">
-          <h2 className="font-semibold text-xl border-b mb-2 text-white uppercase">Get in touch</h2>
+          <h2 className="font-semibold text-xl border-b mb-2 text-white uppercase">
+            Get in touch
+          </h2>
           <ul>
             <li>+91 1234345</li>
             <li>example@tomato.com</li>
           </ul>
         </div>
       </div>
-      <hr  className="w-full  my-2 bg-darkGray"/>
+      <hr className="w-full  my-2 bg-darkGray" />
       <p className="copyright">
         Copyright 2024 &copy{" "}
         <a href="https://rijoksd.netlify.app" target="_blank">
@@ -50,4 +63,6 @@ const Footer = () => {
 };
 
 export default Footer;
+
+// 1:59
 
