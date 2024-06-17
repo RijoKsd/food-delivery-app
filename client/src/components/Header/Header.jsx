@@ -1,7 +1,7 @@
  
 const Header = () => {
   return (
-    <div className="header h-[34vw] my-8 mx-auto bg-[url('/header_img.png')] bg-no-repeat bg-contain relative">
+    <div className="header max-lg:h-[38vw] h-[34vw] my-8 mx-auto bg-[url('/header_img.png')] bg-no-repeat bg-contain relative">
       <div className="header-contents absolute flex flex-col items-start gap-[1.5vw] bottom-[10%] left-[6vw] w-3/6 animate-fadeIn">
         <h2 className="text-white font-medium text-6xl">
           Order your favorite food here
