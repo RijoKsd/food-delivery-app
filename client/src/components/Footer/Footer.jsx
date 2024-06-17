@@ -6,8 +6,8 @@ const Footer = () => {
       id="footer"
       className="text-[#d9d9d9] bg-[#323232] flex flex-col items-center gap-5 p-5 pt-20 mt-20"
     >
-      <div className="footer-content w-full gap-20 grid grid-cols-4">
-        <div className="left col-span-2    flex flex-col items-start gap22">
+      <div className="footer-content w-full gap-10 lg:gap-20 grid lg:grid-cols-4">
+        <div className="left lg:col-span-2    flex flex-col items-start ">
           <img src={assets.logo} alt="logo" />
           <p className="mt-3">
             Delicious meals delivered straight to your door. Experience the
@@ -30,7 +30,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="center flex flex-col items-start gap:2">
-          <h2 className="font-semibold text-xl border-b mb-2 text-white uppercase">
+          <h2 className="font-semibold lg:text-xl border-b mb-2 text-white uppercase">
             Company
           </h2>
           <ul>
@@ -41,7 +41,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className="right flex flex-col items-start gap-2 ">
-          <h2 className="font-semibold text-xl border-b mb-2 text-white uppercase">
+          <h2 className="font-semibold lg:text-xl border-b mb-2 text-white uppercase">
             Get in touch
           </h2>
           <ul>
@@ -52,9 +52,9 @@ const Footer = () => {
       </div>
       <hr className="w-full  my-2 bg-darkGray" />
       <p className="copyright">
-        Copyright 2024 &copy{" "}
+        Copyright 2024 &copy; 
         <a href="https://rijoksd.netlify.app" target="_blank">
-          Rijo Sebastian
+           {" "}Rijo Sebastian
         </a>{" "}
         - All rights reserved.
       </p>
