@@ -2,7 +2,7 @@ import { assets } from "../../assets/assets";
 
 const AppDownload = () => {
   return (
-    <div className="app-download m-auto mt-24 text-center text-2xl font-medium"  id="app-download">
+    <div className="app-download m-auto mt-24 text-center text-2xl font-medium"  id="mobile-app">
       <p>
         For Better Experience Download <br /> Tomato App
       </p>
