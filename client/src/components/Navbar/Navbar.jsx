@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { assets } from "../../assets/assets";
+import { Link } from "react-router-dom";
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
 
@@ -23,7 +24,9 @@ const Navbar = ({ setShowLogin }) => {
   ];
   return (
     <div className=" pt-5 flex justify-between items-center" id="/">
-      <img src={assets.logo} alt="logo" className="w-20 md:w-24 lg:w-36" />
+      <Link to="/">
+        <img src={assets.logo} alt="logo" className="w-20 md:w-24 lg:w-36" />
+      </Link>
       <ul className="flex gap-5 cursor-pointer text-link text-sm lg:text-lg max-md:hidden">
         {/* Nav link generate using map function */}
         {navLinks.map((link, index) => (
@@ -44,7 +47,9 @@ const Navbar = ({ setShowLogin }) => {
       <div className="flex items-center gap-5 lg:gap-10">
         <img src={assets.search_icon} alt="search-icon" className="w-5" />
         <div className="relative">
-          <img src={assets.basket_icon} alt="cart" className="w-5" />
+          <Link to="/cart">
+            <img src={assets.basket_icon} alt="cart" className="w-5" />
+          </Link>
           <div className="dot absolute min-w-[10px] min-h-[10px] bg-tomato rounded-md -top-2 -right-2"></div>
         </div>
         <button
