@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { assets } from "../../assets/assets";
-import { Link } from "react-router-dom";
-const Navbar = () => {
+const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
 
   const navLinks = [
@@ -28,7 +27,8 @@ const Navbar = () => {
       <ul className="flex gap-5 cursor-pointer text-link text-sm lg:text-lg max-md:hidden">
         {/* Nav link generate using map function */}
         {navLinks.map((link, index) => (
-          <a href={`#${link.link}`}
+          <a
+            href={`#${link.link}`}
             key={index}
             onClick={() => setMenu(link.link)}
             className={
@@ -42,12 +42,15 @@ const Navbar = () => {
         ))}
       </ul>
       <div className="flex items-center gap-5 lg:gap-10">
-        <img src={assets.search_icon} alt="search-icon"className="w-5" />
+        <img src={assets.search_icon} alt="search-icon" className="w-5" />
         <div className="relative">
           <img src={assets.basket_icon} alt="cart" className="w-5" />
           <div className="dot absolute min-w-[10px] min-h-[10px] bg-tomato rounded-md -top-2 -right-2"></div>
         </div>
-        <button className="bg-transparent text-link text-base border border-solid border-tomato py-2 px-5  lg:py-2.5 lg:px-7 rounded-[50px] duration-300 hover:bg-[#fff4f2]">
+        <button
+          className="bg-transparent text-link text-base border border-solid border-tomato py-2 px-5  lg:py-2.5 lg:px-7 rounded-[50px] duration-300 hover:bg-[#fff4f2]"
+          onClick={() => setShowLogin(true)}
+        >
           Sign in
         </button>
       </div>
