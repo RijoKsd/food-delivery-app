@@ -1,14 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { assets } from "../../assets/assets";
 import { Link } from "react-router-dom";
+import { StoreContext } from "../../context/StoreContext";
 const Navbar = ({ setShowLogin }) => {
   const [menu, setMenu] = useState("home");
+  const { getTotalCartAmount } = useContext(StoreContext);
 
   const navLinks = [
-    {
-      name: "Home",
-      link: "",
-    },
+  
     {
       name: "Menu",
       link: "menu",
@@ -23,12 +22,13 @@ const Navbar = ({ setShowLogin }) => {
     },
   ];
   return (
-    <div className=" pt-5 flex justify-between items-center" id="/">
+    <div className=" pt-5 flex justify-between items-center  ">
       <Link to="/">
         <img src={assets.logo} alt="logo" className="w-20 md:w-24 lg:w-36" />
       </Link>
       <ul className="flex gap-5 cursor-pointer text-link text-sm lg:text-lg max-md:hidden">
         {/* Nav link generate using map function */}
+        <Link to="/">Home</Link>
         {navLinks.map((link, index) => (
           <a
             href={`#${link.link}`}
@@ -50,7 +50,13 @@ const Navbar = ({ setShowLogin }) => {
           <Link to="/cart">
             <img src={assets.basket_icon} alt="cart" className="w-5" />
           </Link>
-          <div className="dot absolute min-w-[10px] min-h-[10px] bg-tomato rounded-md -top-2 -right-2"></div>
+          <div
+            className={` ${
+              getTotalCartAmount() !== 0
+                ? "dot absolute min-w-[10px] min-h-[10px] bg-tomato rounded-md -top-2 -right-2"
+                : ""
+            }`}
+          ></div>
         </div>
         <button
           className="bg-transparent text-link text-base border border-solid border-tomato py-2 px-5  lg:py-2.5 lg:px-7 rounded-[50px] duration-300 hover:bg-[#fff4f2]"
