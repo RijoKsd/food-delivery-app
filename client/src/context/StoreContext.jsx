@@ -4,6 +4,7 @@ export const StoreContext = createContext(null);
 
 const StoreProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState({});
+  const [token, setToken] = useState(null);
 
   const addToCart = (itemId) => {
     if (!cartItems[itemId]) {
@@ -33,6 +34,8 @@ const StoreProvider = ({ children }) => {
     cartItems,
     setCartItems,
     getTotalCartAmount,
+    setToken,
+    token,
   };
 
   return (
