@@ -1,27 +1,87 @@
-import { assets } from "../../assets/assets"
+import { useState } from "react";
+import { assets } from "../../assets/assets";
+import axios from "axios";
+import config from "../../config/config";
 
- 
 const Add = () => {
+  const [image, setImage] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState({
+    name: "",
+    description: "",
+    category: "Salad",
+    price: "",
+  });
+
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setData((data) => ({ ...data, [name]: value }));
+  };
+
+  const onSubmitHandler = async(e)=>{
+    e.preventDefault()
+
+    const formData =  new FormData();
+    formData.append("name", data.name)
+    formData.append("description", data.description)
+    formData.append("category", data.category)
+    formData.append("price", Number(data.price));
+    formData.append("image", image);
+
+    setLoading(true)
+    const response = await axios.post(`${config.apiUrl}/api/food/add`, formData);
+    if(response.data.success){
+      alert("Product added successfully")
+      setData({
+        name: "",
+        description: "",
+        category: "Salad",
+        price: "",
+      })
+      setImage(false)
+      setLoading(false)
+    }else{
+      alert("Error in adding product")
+      setLoading(false)
+    }
+    
+  }
+
   return (
     <div className="add w-3/4 ml-6 mt-12 text-[#6d6d6d] ">
-      <form className="rijo gap-5 flex flex-col ">
-        <div className="add-image-upload rijo flex flex-col gap-2.5">
+      <form onSubmit={onSubmitHandler} className="  gap-5 flex flex-col ">
+        <div className="add-image-upload   flex flex-col gap-2.5">
           <p>Upload Image</p>
           <label htmlFor="image">
-            <img src={assets.upload_area} alt="cloud image" className="w-28" />
+            <img
+              src={image ? URL.createObjectURL(image) : assets.upload_area}
+              alt="cloud image"
+              className="w-28"
+
+            />
           </label>
-          <input type="file" id="image" hidden required />
+          <input
+            onChange={(e) => setImage(e.target.files[0])}
+            type="file"
+            id="image"
+            hidden
+            required
+            name="image"
+
+          />
         </div>
-        <div className="add-product-name rijo flex flex-col gap-2.5 max-w-[max(40%,280px)]">
+        <div className="add-product-name   flex flex-col gap-2.5 max-w-[max(40%,280px)]">
           <p>Product name</p>
           <input
             type="text"
             name="name"
             placeholder="Type here"
             className="p-2.5 border rounded-sm"
+            onChange={onChangeHandler}
+            value={data.name}
           />
         </div>
-        <div className="add-product-description rijo flex flex-col gap-2.5 max-w-[max(40%,280px)]">
+        <div className="add-product-description   flex flex-col gap-2.5 max-w-[max(40%,280px)]">
           <p>Product description</p>
           <textarea
             name="description"
@@ -29,14 +89,18 @@ const Add = () => {
             placeholder="Write content here"
             required
             className="p-2.5 border rounded-sm"
+            onChange={onChangeHandler}
+            value={data.description}
           ></textarea>
         </div>
         <div className="add category-price flex gap-7">
-          <div className="add-category rijo flex flex-col gap-2.5">
+          <div className="add-category   flex flex-col gap-2.5">
             <p>Product category</p>
             <select
               name="category"
               className="max-w-28 p-2.5 border rounded-sm"
+              onChange={onChangeHandler}
+              value={data.category}
             >
               <option value="Salad">Salad</option>
               <option value="Rolls">Rolls</option>
@@ -48,25 +112,29 @@ const Add = () => {
               <option value="Noodles">Noodles</option>
             </select>
           </div>
-          <div className="add-price rijo flex flex-col gap-2.5">
+          <div className="add-price   flex flex-col gap-2.5">
             <p>Product Price</p>
             <input
               type="number"
               name="price"
               placeholder="$20"
               className="max-w-28 p-2.5 border rounded-sm"
+              onChange={onChangeHandler}
+              value={data.price}
             />
           </div>
         </div>
         <button
           type="submit"
           className="add-btn max-w-28 border-none p-2.5 bg-black text-white cursor-pointer"
+          disabled={loading}
+           
         >
-          ADD
+          {loading ? "Adding..." : "Add Product"}
         </button>
       </form>
     </div>
   );
-}
+};
 
-export default Add
+export default Add;
