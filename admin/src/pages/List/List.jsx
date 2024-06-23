@@ -21,6 +21,11 @@ const List = () => {
 
   const removeFood = async (foodId) => {
     const response = await axios.post(`${config.apiUrl}/api/food/remove`,{id: foodId});
+    if (response.data.success) {
+      toast.success(response.data.message);
+    } else {
+      toast.error(response.data.message);
+    }
     await fetchList();
     
 
