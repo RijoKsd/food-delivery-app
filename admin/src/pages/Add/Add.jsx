@@ -2,6 +2,7 @@ import { useState } from "react";
 import { assets } from "../../assets/assets";
 import axios from "axios";
 import config from "../../config/config";
+import { toast } from "react-toastify";
 
 const Add = () => {
   const [image, setImage] = useState(false);
@@ -31,8 +32,7 @@ const Add = () => {
     setLoading(true)
     const response = await axios.post(`${config.apiUrl}/api/food/add`, formData);
     if(response.data.success){
-      alert("Product added successfully")
-      setData({
+       setData({
         name: "",
         description: "",
         category: "Salad",
@@ -40,9 +40,10 @@ const Add = () => {
       })
       setImage(false)
       setLoading(false)
+      toast.success(response.data.message)
     }else{
-      alert("Error in adding product")
-      setLoading(false)
+       setLoading(false)
+      toast.error(response.data.message)
     }
     
   }
@@ -79,6 +80,7 @@ const Add = () => {
             className="p-2.5 border rounded-sm"
             onChange={onChangeHandler}
             value={data.name}
+            required
           />
         </div>
         <div className="add-product-description   flex flex-col gap-2.5 max-w-[max(40%,280px)]">
@@ -121,6 +123,7 @@ const Add = () => {
               className="max-w-28 p-2.5 border rounded-sm"
               onChange={onChangeHandler}
               value={data.price}
+              required
             />
           </div>
         </div>
