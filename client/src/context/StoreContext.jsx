@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { food_list } from "../assets/assets";
 export const StoreContext = createContext(null);
 
@@ -6,6 +6,12 @@ const StoreProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState({});
   const [token, setToken] = useState(null);
 
+  useEffect(()=>{
+    const token = localStorage.getItem("token")
+    if(token){
+      setToken(token)
+    }
+  },[])
   const addToCart = (itemId) => {
     if (!cartItems[itemId]) {
       setCartItems((prev) => ({ ...prev, [itemId]: 1 }));

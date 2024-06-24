@@ -22,3 +22,8 @@ a{
     display: none;
      
 }
+
+/* index.css */
+.nav-profile-dropdown {
+    @apply absolute hidden right-0 z-10 group-hover:flex group-hover:flex-col group-hover:items-center group-hover:justify-center group-hover:gap-2.5 group-hover:bg-[#fff3ef] group-hover:py-3 group-hover:px-6 group-hover:border group-hover:border-tomato group-hover:outline group-hover:outline-white group-hover:rounded;
+}
