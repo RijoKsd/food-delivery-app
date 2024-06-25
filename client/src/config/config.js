@@ -1,5 +1,5 @@
 const config = {
-  apiUrl: "http://localhost:4000",
+  apiUrl: "https://food-delivery-app-backend-81ac.onrender.com/",
   // Add other configuration settings here
   
 };
