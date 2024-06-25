@@ -28,15 +28,15 @@ const removeFromCart = async (req, res) => {
     let userData = await userModel.findById(req.body.userId);
     let cartData = await userData.cartData;
 
-    if (cartData[req.body.itemId] === 1) {
-      delete cartData[req.body.itemId];
-      await userModel.findByIdAndUpdate(req.body.userId, {
-        cartData: cartData,
-      });
-      return res
-        .status(200)
-        .json({ success: true, message: " Item removed from cart" });
-    }
+    // if (cartData[req.body.itemId] === 1) {
+    //   delete cartData[req.body.itemId];
+    //   await userModel.findByIdAndUpdate(req.body.userId, {
+    //     cartData: cartData,
+    //   });
+    //   return res
+    //     .status(200)
+    //     .json({ success: true, message: " Item removed from cart" });
+    // }
     // if (!cartData[req.body.itemId]) {
     //   return res
     //     .status(400)
