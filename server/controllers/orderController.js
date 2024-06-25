@@ -71,4 +71,17 @@ const verifyOrder = async (req, res) => {
     return res.status(500).json({ message: error });
   }
 };
-export { placeOrder, verifyOrder };
+
+// user orders for frontend
+
+const userOrders = async (req,res)=>{
+   try{
+    const orders = await orderModel.find({userId:req.body.userId});
+    return res.status(200).json({success:true, data:orders})
+  }catch(err){
+    console.error(err);
+    return res.status(500).json({success:false, message:err});
+  }
+
+}
+export { placeOrder, verifyOrder, userOrders };
