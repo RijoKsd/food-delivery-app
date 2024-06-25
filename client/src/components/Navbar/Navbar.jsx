@@ -79,7 +79,7 @@ const navigate = useNavigate();
               className="cursor-pointer transition-all"
             />
             <ul className="nav-profile-dropdown m-auto">
-              <li className="flex gap-2.5 items-center cursor-pointer hover:text-tomato">
+              <li onClick={()=>navigate("/myorders")} className="flex gap-2.5 items-center cursor-pointer hover:text-tomato">
                 <img src={assets.bag_icon} alt="icon" className="w-5" />
                 <p>Orders</p>
               </li>
