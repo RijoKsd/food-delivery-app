@@ -47,7 +47,7 @@ const MyOrders = () => {
               <span className="text-tomato">&#x25cf; </span>
               <strong className="font-medium text-[#454545]">{order.status}</strong>
             </p>
-            <button className="py-3 rounded bg-[#ffe1e1] cursor-pointer text-[#454545] max-md:text-[10px]">Track Order</button>
+            <button className="py-3 rounded bg-[#ffe1e1] cursor-pointer text-[#454545] max-md:text-[10px]" onClick={fetchOrders}>Track Order</button>
           </div>
         ))}
       </div>
