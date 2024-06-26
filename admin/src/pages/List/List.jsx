@@ -2,21 +2,24 @@ import { useEffect, useState } from "react";
 import config from "../../config/config";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Loader from "../../components/Loader/Loader";
 
 const List = () => {
   const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchList = async () => {
     const response = await axios.get(`${config.apiUrl}/api/food/list`);
     if (response.data.success) {
       setList(response.data.data);
+      setLoading(false);
     } else {
       toast.error(response.data.message);
     }
   };
 
   useEffect(() => {
-    fetchList();
+     fetchList();
   }, []);
 
   const removeFood = async (foodId) => {
@@ -29,6 +32,10 @@ const List = () => {
     await fetchList();
     
 
+  }
+
+  if(loading){
+    return <Loader />
   }
   return (
     <div className="list add flex flex-col gap-2.5  ml-6 mt-12 w-full">

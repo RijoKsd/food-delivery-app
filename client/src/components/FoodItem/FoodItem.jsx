@@ -5,7 +5,7 @@ import { StoreContext } from "../../context/StoreContext";
 const FoodItem = ({ _id: id, name, price, description, image }) => {
   const { cartItems, addToCart, removeFromCart } = useContext(StoreContext);
   return (
-    <div className="food-item w-full m-auto rounded-2xl shadow animate-fadeIn">
+     <div className="food-item w-full m-auto rounded-2xl shadow animate-fadeIn">
       <div className="food-item-img-container relative ">
         <img src={image} alt={name} className="rounded-t-xl w-full" />
         {!cartItems[id] ? (

@@ -1,9 +1,14 @@
 import { useContext } from "react";
 import { StoreContext } from "../../context/StoreContext";
 import FoodItem from "../FoodItem/FoodItem";
+import Loader from "../Loader/Loader";
 
 const FoodDisplay = ({ category }) => {
-  const { food_list } = useContext(StoreContext);
+  const { food_list,loading } = useContext(StoreContext);
+
+  if (loading) {
+    return  <Loader />
+  }
   return (
     <div id="food-display" className="food-display mt-8">
       <h2 className="text-3xl font-semibold">Top dishes near you</h2>

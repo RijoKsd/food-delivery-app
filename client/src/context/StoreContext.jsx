@@ -7,6 +7,8 @@ const StoreProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState({});
   const [token, setToken] = useState(null);
   const [food_list, setFoodList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
 
   const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
@@ -53,8 +55,10 @@ const StoreProvider = ({ children }) => {
   };
 
   const fetchFoodList = async () => {
+
     const response = await axios.get(`${config.apiUrl}/api/food/list`);
     setFoodList(response.data.data);
+    setLoading(false);
   };
   const loadCartData = async (token) => {
     const response = await axios.post(
@@ -63,6 +67,7 @@ const StoreProvider = ({ children }) => {
       { headers: { token } }
     );
     setCartItems(response.data.cartData);
+    
   };
    useEffect(() => {
     async function fetchData() {
@@ -84,6 +89,7 @@ const StoreProvider = ({ children }) => {
     getTotalCartAmount,
     setToken,
     token,
+    loading,
   };
 
   return (

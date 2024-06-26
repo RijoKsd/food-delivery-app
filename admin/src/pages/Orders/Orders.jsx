@@ -3,35 +3,43 @@ import config from "../../config/config";
 import axios from "axios";
 import { useEffect } from "react";
 import { assets } from "../../assets/assets";
+import Loader from "../../components/Loader/Loader";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
   const fetchAllOrders = async () => {
     const response = await axios.get(`${config.apiUrl}/api/order/list`);
 
     if (response.data.success) {
       setOrders(response.data.data);
+      setLoading(false);
     } else {
       console.error(response.data.message);
     }
   };
-const statusHandler = async(e,orderId)=>{
-  const status = e.target.value;
-  const response = await axios.post(`${config.apiUrl}/api/order/status`, {orderId, status});
-if(response.data.success){
-  fetchAllOrders();
-}else{
-  console.error(response.data.message);
-
-}
-
-}
+  const statusHandler = async (e, orderId) => {
+    const status = e.target.value;
+    const response = await axios.post(`${config.apiUrl}/api/order/status`, {
+      orderId,
+      status,
+    });
+    if (response.data.success) {
+      fetchAllOrders();
+    } else {
+      console.error(response.data.message);
+    }
+  };
 
   useEffect(() => {
     fetchAllOrders();
   }, []);
 
-   return (
+  if (loading) {
+    return <Loader />
+  }
+
+  return (
     <div className="order add">
       <h3 className="text-lg font-semibold p-2">Order Page</h3>
       <div className="order-list">
@@ -72,7 +80,8 @@ if(response.data.success){
             <p>$ {order.amount}</p>
             <select
               className="bg-[#ffe8e4] border border-tomato w-[max(10vw,120px)] p-2.5 outline-none "
-              onChange={(event) => statusHandler(event,order._id)} value={order.status}
+              onChange={(event) => statusHandler(event, order._id)}
+              value={order.status}
             >
               <option value="Food Processing">Food Processing</option>
               <option value="Out for delivery">Out for delivery</option>
