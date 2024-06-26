@@ -72,7 +72,7 @@ const PlaceOrder = () => {
   return (
     <form
       onSubmit={placeOrder}
-      className="place-order flex items-start justify-between gap-4 mt-24"
+      className="place-order flex max-md:flex-col items-start justify-between gap-4 mt-24"
     >
       <div className="place-order-left w-full max-w-[max(30%,500px)]   ">
         <p className="title text-3xl font-semibold mb-12">
