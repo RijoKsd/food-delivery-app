@@ -77,7 +77,7 @@ export const registerUser = async (req, res) => {
 
     // create token
     const token = createToken(user._id);
-    return res.status(201).json({ success: true, token });
+    return res.status(201).json({ success: true, token,message: "User created successfully" });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ success: false, message: "Server Error" });

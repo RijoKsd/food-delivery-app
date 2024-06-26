@@ -3,6 +3,7 @@ import { assets } from "../../assets/assets";
 import config from "../../config/config";
 import axios from "axios";
 import { StoreContext } from "../../context/StoreContext";
+import { toast } from "react-toastify";
 
 const LoginPopup = ({ setShowLogin }) => {
   const [currentState, setCurrentState] = useState("Login");
@@ -23,23 +24,24 @@ const LoginPopup = ({ setShowLogin }) => {
     e.preventDefault();
     let url = config.apiUrl + "/api/user";
 
-    console.log(url);
     if (currentState === "Login") {
       url += "/login";
     } else {
       url += "/register";
     }
-
-    const response = await axios.post(url, data);
-    if (response.data.success) {
-      setToken(response.data.token);
-      localStorage.setItem("token", response.data.token);
-      setShowLogin(false);
+    try{
+      const response = await axios.post(url, data);
+      if (response.data.success) {
+        setToken(response.data.token);
+        localStorage.setItem("token", response.data.token);
+        setShowLogin(false);
+        toast.success(response.data.message)
+      } 
+    }catch(err){
+      const errorMsg = err.response?.data?.message || "Server Error";
+      toast.error(errorMsg);
     }
-    else{
-      // toast.error(response.data.message)
-      console.error(response.data.message)
-    }
+      
   };
  
   return (

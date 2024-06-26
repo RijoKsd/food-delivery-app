@@ -8,11 +8,13 @@ import { useState } from "react";
 import LoginPopup from "./components/LoginPopup/LoginPopup";
 import Verify from "./pages/Verify/Verify";
 import MyOrders from "./pages/MyOrders/MyOrders";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function App() {
   const [showLogin, setShowLogin] = useState(false);
   return (
     <>
+      <ToastContainer autoClose={1000} />
       {showLogin ? <LoginPopup setShowLogin={setShowLogin} /> : <></>}
       <div className="w-4/5 m-auto">
         <Navbar setShowLogin={setShowLogin} />
@@ -21,7 +23,7 @@ export default function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<PlaceOrder />} />
           <Route path="/verify" element={<Verify />} />
-          <Route path="/myorders" element= {<MyOrders />}/>
+          <Route path="/myorders" element={<MyOrders />} />
         </Routes>
       </div>
       <Footer />
