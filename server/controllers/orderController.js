@@ -6,6 +6,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 // Placing user order for frontend
 const placeOrder = async (req, res) => {
   const frontend_url = process.env.FRONTEND_URL;
+   
+
   try {
     const newOrder = new orderModel({
       userId: req.body.userId,
@@ -39,13 +41,15 @@ const placeOrder = async (req, res) => {
       },
       quantity: 1,
     });
+    const successUrl = `${frontend_url}/verify?success=true&orderId=${newOrder._id}`;
+    const cancelUrl = `${frontend_url}/verify?success=false&orderId=${newOrder._id}`;
 
     const session = await stripe.checkout.sessions.create({
       line_items: line_items,
       mode: "payment",
       payment_method_types: ["card"],
-      success_url: `${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
-      cancel_url: `${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
+      success_url:   successUrl,
+      cancel_url:   cancelUrl,
     });
     return res.status(201).json({ success: true, session_url: session.url });
   } catch (error) {
